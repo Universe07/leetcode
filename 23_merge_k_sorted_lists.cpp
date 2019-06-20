@@ -8,6 +8,7 @@
  */
 
 // Time: O(n*logk)
+// n is the length of one single list, k is the size of lists
 // Space: O(1)
 class Solution {
  public:
