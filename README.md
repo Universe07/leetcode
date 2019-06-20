@@ -1,2 +1,2 @@
 # leetcode
-记录 CJGGZL
+记录 GGZL
