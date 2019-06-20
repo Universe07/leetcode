@@ -66,5 +66,13 @@ class Solution {
     unordered_map<Node *, Node *> node_map;
     return helper(head, node_map);
   }
-  Node *helper(Node *node, unordered_map<Node *, Node *> &node_map) {}
+  Node *helper(Node *node, unordered_map<Node *, Node *> &node_map) {
+    if (!node) return nullptr;
+    if (node_map.count(node)) return node_map[node];
+    Node *res = new Node(node->val, nullptr, nullptr);
+    node_map[node] = res;
+    res->next = helper(node->next, node_map);
+    res->random = helper(node->random, ndoe);
+    return res;
+  }
 };
