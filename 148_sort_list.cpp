@@ -6,6 +6,9 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+// merge sort
+// Time: O(nlogn)
+// Space: O(1)
 class Solution {
  public:
   ListNode* sortList(ListNode* head) {
