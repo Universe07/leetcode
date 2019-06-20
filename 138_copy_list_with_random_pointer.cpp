@@ -63,27 +63,8 @@ public:
 class Solution {
  public:
   Node *copyRandomList(Node *head) {
-    unordered_map<Node *, int> node_map;
-    vector<Node *> node_vec;
-    Node *ptr = head;
-    int i = 0;
-    while (ptr) {
-      node_vec.push_back(new Node(ptr->val));
-      node_map[ptr] = i;
-      ptr = ptr->next;
-      i++;
-    }
-    node_vec.push_back(0);
-    ptr = head;
-    i = 0;
-    while (ptr) {
-      node_vec[i]->next = node_vec[i + 1];
-      if (ptr->random) {
-        node_vec[i]->random = node_vec[node_map[ptr->random]];
-      }
-      ptr = ptr->next;
-      i++;
-    }
-    return node_vec[0];
+    unordered_map<Node *, Node *> node_map;
+    return helper(head, node_map);
   }
+  Node *helper(Node *node, unordered_map<Node *, Node *> &node_map) {}
 };
