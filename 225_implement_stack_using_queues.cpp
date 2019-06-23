@@ -1,3 +1,6 @@
+// Time : push O(n), pop O(1), top O(1)
+// Space: O(n)
+
 class MyStack {
  public:
   /** Initialize your data structure here. */
