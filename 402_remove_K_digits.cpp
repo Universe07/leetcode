@@ -12,7 +12,7 @@ class Solution {
       }
       res.push_back(c);
     }
-    res.resize(res.size() - k);
+    res.resize(res.size() - k);  // "9" k = 1
     auto it = res.find_first_not_of('0');
     if (it == string::npos || res == "0") {
       return "0";
