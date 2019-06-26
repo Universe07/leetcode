@@ -8,13 +8,13 @@ class MedianFinder {
       min_heap.emplace(num);
       if (min_heap.size() > max_heap.size() + 1) {
         max_heap.emplace(min_heap.top());
-        max_heap.pop();
+        min_heap.pop();
       }
     } else {
       max_heap.emplace(num);
       if (max_heap.size() > min_heap.size()) {
         min_heap.emplace(max_heap.top());
-        min_heap.pop();
+        max_heap.pop();
       }
     }
   }
