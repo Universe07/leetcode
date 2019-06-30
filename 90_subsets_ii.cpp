@@ -1,3 +1,6 @@
+// Time: O(2^n)
+// Space: O(1)
+
 class Solution {
  public:
   vector<vector<int>> subsetsWithDup(vector<int>& nums) {
