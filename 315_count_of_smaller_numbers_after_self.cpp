@@ -51,3 +51,74 @@ class Solution {
     }
   }
 };
+
+class Solution {
+ public:
+  class BSTreeNode {
+   public:
+    int count, val;
+    BSTreeNode* left;
+    BSTreeNode* right;
+    BSTreeNode(int count, int val) {
+      this->count = count;
+      this->val = val;
+      this->left = this->right = nullptr;
+    }
+  };
+
+  vector<int> countSmaller(vector<int>& nums) {
+    vector<int> res(nums.size());
+    BSTreeNode* root = nullptr;
+    for (int i = nums.size() - 1; i >= 0; --i) {
+      BSTreeNode* node = new BSTreeNode(0, nums[i]);
+      root = insertNode(root, node);
+      res[i] = query(root, nums[i]);
+    }
+    return res;
+  }
+
+  BSTreeNode* insertNode(BSTreeNode* root, BSTreeNode* node) {
+    if (root == nullptr) {
+      return node;
+    }
+    BSTreeNode* curr = root;
+    while (curr) {
+      if (node->val < curr->val) {
+        ++curr->count;
+        if (curr->left != nullptr) {
+          curr = curr->left;
+        } else {
+          curr->left = node;
+          break;
+        }
+      } else {
+        if (curr->right != nullptr) {
+          curr = curr->right;
+        } else {
+          curr->right = node;
+          break;
+        }
+      }
+    }
+    return root;
+  }
+
+  int query(BSTreeNode* root, int val) {
+    if (root == nullptr) {
+      return 0;
+    }
+    int count = 0;
+    BSTreeNode* curr = root;
+    while (curr) {
+      if (val < curr->val) {
+        curr = curr->left;
+      } else if (val > curr->val) {
+        count += 1 + curr->count;
+        curr = curr->right;
+      } else {
+        return count + curr->count;
+      }
+    }
+    return 0;
+  }
+};
