@@ -29,7 +29,9 @@ class Solution {
       curr->next = node;
     }
     for (Node *curr = head; curr; curr = curr->next->next) {
-      curr->next->random = curr->random->next;
+      if (curr->random) {
+        curr->next->random = curr->random->next;
+      }
     }
     Node dummy(0);
     for (Node *curr = head, Node *copy_curr = &dummy; curr;
