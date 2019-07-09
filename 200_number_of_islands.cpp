@@ -12,8 +12,8 @@ class Solution {
     for (int i = 0; i < grid.size(); ++i) {
       for (int j = 0; j < grid[0].size(); ++j) {
         if (mark[i][j] == 0 && grid[i][j] == '1') {
-          // DFS(mark, grid, i, j);
-          BFS(mark, grid, i, j);
+          DFS(mark, grid, i, j);
+          // BFS(mark, grid, i, j);
           ++ans;
         }
       }
