@@ -10,6 +10,7 @@ class Solution {
     mergeSort(vec, count);
     return count;
   }
+
   void mergeSort(vector<pair<int, int>>& vec, vector<int>& count) {
     if (vec.size() < 2) {
       return;
@@ -28,6 +29,7 @@ class Solution {
     vec.clear();
     merge(sub_vec1, sub_vec2, vec, count);
   }
+
   void merge(vector<pair<int, int>>& sub_vec1, vector<pair<int, int>>& sub_vec2,
              vector<pair<int, int>>& vec, vector<int>& count) {
     int i = 0;
