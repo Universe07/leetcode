@@ -40,3 +40,48 @@ class Solution {
     return -1;
   }
 };
+
+class Solution {
+ public:
+  vector<int> searchRange(vector<int>& nums, int target) {
+    vector<int> ans(2, -1);
+    if (nums.empty()) {
+      return ans;
+    }
+    ans[0] = lower_bound(nums, target);
+    if (ans[0] != -1) ans[1] = upper_bound(nums, target);
+    return ans;
+  }
+  int lower_bound(vector<int>& nums, int target) {
+    int left = 0, right = nums.size();
+    while (left < right) {
+      int mid = left + (right - left) / 2;
+      if (nums[mid] >= target) {
+        right = mid;
+      } else {
+        left = mid + 1;
+      }
+    }
+    if (left != nums.size() && nums[left] == target) {
+      return left;
+    } else {
+      return -1;
+    }
+  }
+  int upper_bound(vector<int>& nums, int target) {
+    int left = 0, right = nums.size();
+    while (left < right) {
+      int mid = left + (right - left) / 2;
+      if (nums[mid] > target) {
+        right = mid;
+      } else {
+        left = mid + 1;
+      }
+    }
+    if (left != 0 && nums[left - 1] == target) {
+      return left - 1;
+    } else {
+      return -1;
+    }
+  }
+};
