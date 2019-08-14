@@ -7,6 +7,8 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+// Time: O(n)
+// Space: O(1)
 class Solution {
  public:
   TreeNode* trimBST(TreeNode* root, int L, int R) {
