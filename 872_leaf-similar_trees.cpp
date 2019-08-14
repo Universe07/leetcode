@@ -27,11 +27,11 @@ class Solution {
     while (true) {
       auto node = stk.top();
       stk.pop();
-      if (node->right) {
-        stk.push(node->right);
-      }
       if (node->left) {
         stk.push(node->left);
+      }
+      if (node->right) {
+        stk.push(node->right);
       }
       if (!node->left && !node->right) {
         return node->val;
