@@ -66,3 +66,35 @@ class Solution {
     return result;
   }
 };
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+ public:
+  int pathSum(TreeNode* root, int sum) {
+    ans = 0;
+    lookup = {{0, 1}};
+    helper(root, 0, sum);
+    return ans;
+  }
+
+ private:
+  int ans;
+  unordered_map<int, int> lookup;
+  void helper(TreeNode* node, int cur, int sum) {
+    if (!node) return;
+    cur += node->val;
+    ans += lookup[cur - sum];
+    ++lookup[cur];
+    helper(node->left, cur, sum);
+    helper(node->right, cur, sum);
+    --lookup[cur];
+  }
+};
