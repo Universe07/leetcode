@@ -12,35 +12,38 @@ class Codec {
   // Encodes a tree to a single string.
   string serialize(TreeNode* root) {
     string data = "";
-    serializeHelper(root, data);
+    serialize(root, &data);
     return data;
-  }
-
-  void serializeHelper(TreeNode* node, string& data) {
-    if (node) {
-      data += to_string(node->val) + " ";
-      serializeHelper(node->left, data);
-      serializeHelper(node->right, data);
-    }
   }
 
   // Decodes your encoded data to tree.
   TreeNode* deserialize(string data) {
-    int i = 0;
-    return deserializeHelper(numeric_limits<int>::min(),
-                             numeric_limits<int>::max(), data, i);
+    int pos = 0;
+    int maxVal = INT_MAX;
+    int minVal = INT_MIN;
+    return deserialize(&pos, data, minVal, maxVal);
   }
-  TreeNode* deserializeHelper(int minVal, int maxVal, string data, int& i) {
-    if (i == data.length()) {
+
+ private:
+  void serialize(TreeNode* node, string* data) {
+    if (!node) {
+      return;
+    }
+    *data += to_string(node->val) + ' ';
+    serialize(node->left, data);
+    serialize(node->right, data);
+  }
+  TreeNode* deserialize(int* pos, string& data, int minVal, int maxVal) {
+    if (*pos == data.size()) {
       return nullptr;
     }
-    int j = data.find(' ', i);
-    auto val = stoi(data.substr(i, j - i));
-    if (minVal < val && val < maxVal) {
-      auto node = new TreeNode(val);
-      i = j + 1;
-      node->left = deserializeHelper(minVal, val, data, i);
-      node->right = deserializeHelper(val, maxVal, data, i);
+    int end = data.find(' ', *pos);
+    auto val = stoi(data.substr(*pos, end - *pos));
+    if (val < maxVal && val > minVal) {
+      TreeNode* node = new TreeNode(val);
+      *pos = end + 1;
+      node->left = deserialize(pos, data, minVal, val);
+      node->right = deserialize(pos, data, val, maxVal);
       return node;
     } else {
       return nullptr;
