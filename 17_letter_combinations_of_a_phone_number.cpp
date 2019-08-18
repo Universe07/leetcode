@@ -1,3 +1,6 @@
+// Time: O(4^n) 4 is the maximum length of the one possiple input. n is the
+// length of the input.
+// Space : O(4 ^ n + n)
 class Solution {
  public:
   vector<string> letterCombinations(string digits) {
@@ -23,5 +26,25 @@ class Solution {
       dfs(digits, cur + 1, path, ans);
       path.pop_back();
     }
+  }
+};
+
+class Solution {
+ public:
+  const vector<string> keyboard{" ",   "",    "abc",  "def", "ghi",
+                                "jkl", "mno", "pqrs", "tuv", "wxyz"};
+  vector<string> letterCombinations(string digits) {
+    if (digits.empty()) return {};
+    vector<string> ans{""};
+    for (const auto& digit : digits) {
+      vector<string> tmp;
+      for (const string& str : ans) {
+        for (char c : keyboard[digit - '0']) {
+          tmp.push_back(str + c);
+        }
+      }
+      ans.swap(tmp);
+    }
+    return ans;
   }
 };
