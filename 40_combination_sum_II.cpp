@@ -30,3 +30,54 @@ class Solution {
     generate(i + 1, target, sum, nums, result, item, res_set);
   }
 };
+
+class Solution {
+ public:
+  vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+    if (candidates.empty()) return {};
+    vector<vector<int>> ans;
+    vector<int> tmp;
+    sort(candidates.begin(), candidates.end());
+    dfs(candidates, target, 0, tmp, ans);
+    return ans;
+  }
+  void dfs(const vector<int>& candidates, int gap, int start, vector<int>& tmp,
+           vector<vector<int>>& ans) {
+    if (gap == 0) {
+      ans.push_back(tmp);
+      return;
+    }
+    for (int i = start; i < candidates.size(); ++i) {
+      if (gap < candidates[i]) break;
+      if (i > start && candidates[i] == candidates[i - 1]) continue;
+      tmp.push_back(candidates[i]);
+      dfs(candidates, gap - candidates[i], i + 1, tmp, ans);
+      tmp.pop_back();
+    }
+  }
+};
+
+class Solution {
+ public:
+  vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+    if (candidates.empty()) return {};
+    set<vector<int>> ans;
+    vector<int> tmp;
+    sort(candidates.begin(), candidates.end());
+    dfs(candidates, target, 0, tmp, ans);
+    return vector<vector<int>>(ans.begin(), ans.end());
+  }
+  void dfs(const vector<int>& candidates, int gap, int start, vector<int>& tmp,
+           set<vector<int>>& ans) {
+    if (gap == 0) {
+      ans.insert(tmp);
+      return;
+    }
+    for (int i = start; i < candidates.size(); ++i) {
+      if (candidates[i] > gap) break;
+      tmp.push_back(candidates[i]);
+      dfs(candidates, gap - candidates[i], i + 1, tmp, ans);
+      tmp.pop_back();
+    }
+  }
+};
