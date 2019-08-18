@@ -23,6 +23,30 @@ class Solution {
   }
 };
 
+class Solution {
+ public:
+  vector<vector<int>> subsets(vector<int>& nums) {
+    vector<vector<int>> ans{{}};
+    vector<int> tmp;
+    for (int i = 1; i <= nums.size(); ++i) {
+      dfs(nums, i, 0, tmp, ans);
+    }
+    return ans;
+  }
+  void dfs(const vector<int>& nums, int depth, int start, vector<int>& tmp,
+           vector<vector<int>>& ans) {
+    if (tmp.size() == depth) {
+      ans.push_back(tmp);
+      return;
+    }
+    for (int i = start; i < nums.size(); ++i) {
+      tmp.push_back(nums[i]);
+      dfs(nums, depth, i + 1, tmp, ans);
+      tmp.pop_back();
+    }
+  }
+};
+
 // Time: O(n * 2 ^ n)
 // Space: O(1)
 
