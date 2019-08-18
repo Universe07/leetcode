@@ -17,7 +17,7 @@ class Solution {
     for (int i = start; i < candidates.size(); ++i) {
       if (candidates[i] > gap) break;
       tmp.push_back(candidates[i]);
-      dfs(candidates, i, gap - candidates[i], tmp, ans);
+      dfs(candidates, i, gap - candidates[i], tmp, ans);  // 是从i开始
       tmp.pop_back();
     }
   }
