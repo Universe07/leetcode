@@ -27,3 +27,27 @@ class Solution {
     generate(i + 1, nums, result, item, res_set);
   }
 };
+
+class Solution {
+ public:
+  vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+    const int n = nums.size();
+    sort(nums.begin(), nums.end());
+    vector<vector<int>> ans;
+    vector<int> tmp;
+    auto dfs = [&](int s) {
+      ans.push_back(tmp);
+      if (tmp.size() == n) {
+        return;
+      }
+      for (int i = s; i < n; ++i) {
+        if (i > s && nums[i] == nums[i - 1]) continue;
+        tmp.push_back(nums[i]);
+        dfs(i + 1);
+        tmp.pop_back();
+      }
+    };
+    dfs(0);
+    return ans;
+  }
+};
