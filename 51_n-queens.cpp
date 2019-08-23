@@ -49,3 +49,45 @@ class Solution {
     }
   }
 };
+
+class Solution {
+ public:
+  vector<vector<string>> solveNQueens(int n) {
+    sol.clear();
+    board = vector<string>(n, string(n, '.'));
+    cols = vector<int>(n, 0);
+    diag1 = vector<int>(n * 2 - 1, 0);
+    diag2 = vector<int>(n * 2 - 1, 0);
+    nqueens(n, 0);
+    return sol;
+  }
+
+ private:
+  vector<string> board;
+  vector<int> cols;
+  vector<int> diag1;
+  vector<int> diag2;
+  vector<vector<string>> sol;
+
+  bool available(int row, int col, int n) {
+    return !cols[col] && !diag1[row + col] && !diag2[row - col + n - 1];
+  }
+  void updateBoard(int row, int col, int n, bool is_put) {
+    cols[col] = is_put;
+    diag1[row + col] = is_put;
+    diag2[row - col + n - 1] = is_put;
+    board[row][col] = is_put ? 'Q' : '.';
+  }
+  void nqueens(int n, int row) {
+    if (row == n) {
+      sol.push_back(board);
+      return;
+    }
+    for (int col = 0; col < n; ++col) {
+      if (!available(row, col, n)) continue;
+      updateBoard(row, col, n, true);
+      nqueens(n, row + 1);
+      updateBoard(row, col, n, false);
+    }
+  }
+};
