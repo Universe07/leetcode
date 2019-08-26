@@ -53,3 +53,70 @@ class Solution {
     return 0;
   }
 };
+
+class Solution {
+ public:
+  int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
+    unordered_set<string> dict(wordList.begin(), wordList.end());
+    if (!dict.count(endWord)) return 0;
+    int step = 0;
+    queue<string> que;
+    que.push(beginWord);
+    int len = beginWord.length();
+    while (!que.empty()) {
+      ++step;
+      for (int size = que.size(); size > 0; --size) {
+        string word = que.front();
+        que.pop();
+        for (int i = 0; i < len; ++i) {
+          char ch = word[i];
+          for (char j = 'a'; j < 'z'; ++j) {
+            word[i] = j;
+            if (word == endWord) return step + 1;
+            if (!dict.count(word)) continue;
+            dict.erase(word);
+            que.push(word);
+          }
+          word[i] = ch;
+        }
+      }
+    }
+    return 0;
+  }
+};
+
+class Solution {
+ public:
+  int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
+    unordered_set<string> dict(wordList.begin(), wordList.end());
+    if (!dict.count(endWord)) return 0;
+    int len = beginWord.length();
+
+    unordered_set<string> vec1{beginWord};
+    unordered_set<string> vec2{endWord};
+
+    int step = 0;
+    while (!vec1.empty() && !vec2.empty()) {
+      ++step;
+      if (vec1.size() > vec2.size()) {
+        swap(vec1, vec2);
+      }
+      unordered_set<string> vec;
+      for (string w : vec1) {
+        for (int i = 0; i < len; ++i) {
+          char ch = w[i];
+          for (int j = 'a'; j < 'z'; ++j) {
+            w[i] = j;
+            if (vec2.count(w)) return step + 1;
+            if (!dict.count(w)) continue;
+            dict.erase(w);
+            vec.insert(w);
+          }
+          w[i] = ch;
+        }
+      }
+      vec1 = vec;
+    }
+    return 0;
+  }
+};
