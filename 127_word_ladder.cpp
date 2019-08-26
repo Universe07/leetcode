@@ -70,7 +70,7 @@ class Solution {
         que.pop();
         for (int i = 0; i < len; ++i) {
           char ch = word[i];
-          for (char j = 'a'; j < 'z'; ++j) {
+          for (char j = 'a'; j <= 'z'; ++j) {
             word[i] = j;
             if (word == endWord) return step + 1;
             if (!dict.count(word)) continue;
@@ -105,7 +105,7 @@ class Solution {
       for (string w : vec1) {
         for (int i = 0; i < len; ++i) {
           char ch = w[i];
-          for (int j = 'a'; j < 'z'; ++j) {
+          for (int j = 'a'; j <= 'z'; ++j) {
             w[i] = j;
             if (vec2.count(w)) return step + 1;
             if (!dict.count(w)) continue;
