@@ -27,11 +27,11 @@ class Solution {
       if (done.count(node)) continue;
       done.insert(node);
       if (!m.count(node)) m[node] = new Node(node->val);
-      Node* temp = m[node];
+      // Node* temp = m[node];
       for (Node* ss : node->neighbors) {
         if (!m.count(ss)) m[ss] = new Node(ss->val);
         que.push(ss);
-        temp->neighbors.push_back(m[ss]);
+        m[node]->neighbors.push_back(m[ss]);
       }
     }
     return m[node];
