@@ -74,3 +74,31 @@ class Solution {
     return true;
   }
 };
+
+class Solution {
+ public:
+  bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+    graph = vector<vector<int>>(numCourses);
+    for (int i = 0; i < prerequisites.size(); ++i) {
+      graph[prerequisites[i][0]].push_back(prerequisites[i][1]);
+    }
+    vector<int> visited(numCourses, 0);
+    for (int i = 0; i < numCourses; ++i) {
+      if (dfs(i, visited)) return false;
+    }
+    return true;
+  }
+
+ private:
+  vector<vector<int>> graph;
+  bool dfs(int cur, vector<int>& visited) {
+    if (visited[cur] == 1) return true;
+    if (visited[cur] == 2) return false;
+    visited[cur] = 1;
+    for (const int nextCur : graph[cur]) {
+      if (dfs(nextCur, visited)) return true;
+    }
+    visited[cur] = 2;
+    return false;
+  }
+};
