@@ -38,6 +38,8 @@ class Solution {
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+// Time: O(n)
+// Space: O(h) or O(logn)
 class Solution {
  public:
   int getMinimumDifference(TreeNode* root) {
