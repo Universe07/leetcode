@@ -42,10 +42,17 @@ class Solution {
  public:
   int getMinimumDifference(TreeNode* root) {
     min_diff = INT_MAX;
+    prev = nullptr;
     inorder(root);
     return min_diff;
   }
-  void inorder(TreeNode* node) {}
+  void inorder(TreeNode* node) {
+    if (!node) return;
+    inorder(node->left);
+    if (prev) min_diff = min(node->val - *prev, min_diff);
+    prev = &node->val;
+    inorder(node->right);
+  }
 
  private:
   int min_diff;
