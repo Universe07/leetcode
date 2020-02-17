@@ -1,3 +1,6 @@
+// Time: O(N + T);
+// Space: O(N)
+
 class Solution {
  public:
   int findJudge(int N, vector<vector<int>>& trust) {
