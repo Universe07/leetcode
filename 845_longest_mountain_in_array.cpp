@@ -1,3 +1,6 @@
+// Time: O(n)
+// Space: O(n)
+
 class Solution {
  public:
   int longestMountain(vector<int>& A) {
@@ -14,6 +17,8 @@ class Solution {
   }
 };
 
+// Time: O(n)
+// Space: O(1)
 class Solution {
  public:
   int longestMountain(vector<int>& A) {
