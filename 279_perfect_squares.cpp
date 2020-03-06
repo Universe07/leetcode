@@ -1,5 +1,5 @@
 // Time: O(n * sqrt(n))
-// Space : O(m)
+// Space : O(n)
 
 class Solution {
  public:
