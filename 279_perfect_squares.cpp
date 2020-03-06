@@ -1,3 +1,6 @@
+// Time: O(n * sqrt(n))
+// Space : O(m)
+
 class Solution {
  public:
   int numSquares(int n) {
