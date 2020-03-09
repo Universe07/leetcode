@@ -1,3 +1,6 @@
+// Time: O(n^2)
+// Space:O(n)
+
 class Solution {
  public:
   string decodeString(string s) {
