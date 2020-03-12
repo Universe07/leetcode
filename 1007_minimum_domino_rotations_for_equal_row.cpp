@@ -1,3 +1,6 @@
+// Time: O(n)
+// Space: O(1)
+
 class Solution {
  public:
   int minDominoRotations(vector<int>& A, vector<int>& B) {
