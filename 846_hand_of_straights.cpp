@@ -7,8 +7,8 @@ class Solution {
     for (int& i : hand) ++cnt[i];
     for (auto it : cnt) {
       if (cnt[it.first] > 0) {
-        for (int i = W - 1; i >= 0; --i) {
-          if ((cnt[it.first + i] -= cnt[it.first]) < 0) return false;
+        for (int group = W - 1; group >= 0; --group) {
+          if ((cnt[it.first + group] -= cnt[it.first]) < 0) return false;
         }
       }
     }
