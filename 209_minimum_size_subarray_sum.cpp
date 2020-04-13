@@ -6,7 +6,7 @@ class Solution {
       sum += nums[r++];
       while (sum >= s) {
         len = min(len, r - l);
-        sum -= nums[l--];
+        sum -= nums[l++];
       }
     }
     return len == INT_MAX ? 0 : len;
