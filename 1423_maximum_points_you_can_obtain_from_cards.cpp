@@ -1,10 +1,10 @@
 class Solution {
  public:
   int maxScore(vector<int>& cardPoints, int k) {
-    int N = A.size(), i = 0, j = N - k;
-		auto sum = accumulate(A.begin() + j, A.end(), 0);
-		max = sum;
-		while (k --) max = max(max, sum += A[i++] - A[j++]);
-		return max;
+    int N = cardPoints.size(), i = 0, j = N - k;
+    auto sum = accumulate(cardPoints.begin() + j, cardPoints.end(), 0),
+         ans = sum;
+    while (k--) ans = max(ans, sum += cardPoints[i++] - cardPoints[j++]);
+    return ans;
   }
 };
